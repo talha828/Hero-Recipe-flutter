@@ -19,7 +19,9 @@ List pizza=['In a large bowl, add chicken, chilli sauce, black pepper, soy sauce
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Icon(Icons.arrow_back_ios,color: Colors.black,size: 25,),
+        leading: InkWell(
+            onTap: ()=>Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios,color: Colors.black,size: 25,)),
         title: Center(child: Icon(FontAwesomeIcons.solidHeart,color: Color(0xffff0000),),),
         actions: [Container(
           margin: EdgeInsets.only(right: 20),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:recipe_hero/screen/favorites/favorite_card.dart';
 import 'package:recipe_hero/screen/favorites/recipe_screen.dart';
+import 'package:recipe_hero/screen/ingrediants/filters_screen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
@@ -28,17 +29,30 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           "Favorites",
           style: TextStyle(fontFamily: 'NunitoSans-Bold', color: Colors.black),
         )),
+        leading:  Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            width: 20,
+            height: 20,
+            child: Image(
+              color: Colors.white,
+              image: AssetImage(
+                "assets/icon/menu-icon.png",
+              ),
+            )),
         elevation: 0.0,
         actions: [
-          Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              width: 20,
-              height: 20,
-              child: Image(
-                image: AssetImage(
-                  "assets/icon/menu-icon.png",
-                ),
-              ))
+          InkWell(
+            onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>FiltersScreen())),
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                width: 20,
+                height: 20,
+                child: Image(
+                  image: AssetImage(
+                    "assets/icon/menu-icon.png",
+                  ),
+                )),
+          )
         ],
       ),
       body: Container(
@@ -71,7 +85,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           items,
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontFamily: "NunitoSans-SemiBold"),
                         ),
                       );

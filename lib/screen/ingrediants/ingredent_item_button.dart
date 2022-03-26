@@ -24,6 +24,7 @@ class _IngerdientsItemButtonState extends State<IngerdientsItemButton> {
       },
       child: Container(
         child: ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 5),
           horizontalTitleGap: -10,
           leading: Container(
             decoration: BoxDecoration(

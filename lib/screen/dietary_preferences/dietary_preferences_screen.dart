@@ -85,15 +85,20 @@ class _DietaryPreferencesScreenState extends State<DietaryPreferencesScreen> {
                    ),
 
 
-                   Container(
-                     alignment: Alignment.center,
-                     margin: EdgeInsets.symmetric(horizontal: 10),
-                     decoration: BoxDecoration(
-                         color: (selectitem.selectediteam.length == 0)?Color(0xff999A9D):Color(0xffff0000),
-                         borderRadius: BorderRadius.circular(20)
-                     ),
-                     padding: EdgeInsets.symmetric(vertical: 10,),
-                     child:  Text("Continue",style: TextStyle(fontSize:20,fontFamily:"NunitoSans-Bold",color: Colors.white),),),
+                   InkWell(
+                     onTap: (){
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomBarNavigation()));
+                     },
+                     child: Container(
+                       alignment: Alignment.center,
+                       margin: EdgeInsets.symmetric(horizontal: 10),
+                       decoration: BoxDecoration(
+                           color: (selectitem.selectediteam.length == 0)?Color(0xff999A9D):Color(0xffff0000),
+                           borderRadius: BorderRadius.circular(20)
+                       ),
+                       padding: EdgeInsets.symmetric(vertical: 10,),
+                       child:  Text("Continue",style: TextStyle(fontSize:20,fontFamily:"NunitoSans-Bold",color: Colors.white),),),
+                   ),
                    SizedBox(height: 5,),
                    Row(
                      mainAxisAlignment: MainAxisAlignment.center,

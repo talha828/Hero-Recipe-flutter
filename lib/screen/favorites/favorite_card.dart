@@ -48,7 +48,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
                   ))),
           Flexible(
               child: Container(
-                  padding: EdgeInsets.only(left: 10,right: 10),
+                  padding: EdgeInsets.only(left: 10,right: 10,top: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

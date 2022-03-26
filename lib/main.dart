@@ -7,6 +7,9 @@ import 'package:recipe_hero/screen/bottom_bar_navigation/bottom_bar_navigation.d
 import 'package:recipe_hero/screen/dietary_preferences/dietary_preferences_screen.dart';
 import 'package:recipe_hero/screen/favorites/favorite_screen.dart';
 import 'package:recipe_hero/screen/favorites/recipe_screen.dart';
+import 'package:recipe_hero/screen/ingrediants/available_recipe_screen.dart';
+import 'package:recipe_hero/screen/ingrediants/filters_screen.dart';
+import 'package:recipe_hero/screen/ingrediants/ingredients.dart';
 import 'package:recipe_hero/splash_screen/indicator_screen/indicator_screens.dart';
 import 'package:recipe_hero/splash_screen/indicator_screen/screen_indicator.dart';
 import 'package:recipe_hero/splash_screen/spalsh_screen.dart';
@@ -30,10 +33,12 @@ class MyApp extends StatelessWidget {
     ],
       child: MaterialApp(
           home:SplashScreen()
-       //  home: AddIngredients(),
+        // home: BottomBarNavigation()
        // home: DietaryPreferencesScreen(),
-       //home:FavoriteScreen(),
+      // home:FavoriteScreen(),
      // home: RecipeScreen(),
+        // home: AvailableScreen(),
+        //home:FiltersScreen()
       ),);
   }
 }
