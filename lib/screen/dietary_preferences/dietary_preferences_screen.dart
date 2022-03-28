@@ -20,11 +20,8 @@ class _DietaryPreferencesScreenState extends State<DietaryPreferencesScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-     var iteamwidth= width * 0.2;
-     var iteamheight = width *  0.1;
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(

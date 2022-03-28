@@ -23,19 +23,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
      ,{'Time':time},{"Dietary Needs":dietary}];
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Center(
-              child: Text("Cancle",style: TextStyle(
-                color:Color(0xffff0000),fontFamily: 'NunitoSans-Bold',fontSize: 15,
-              ),),
+          leading: InkWell(
+            onTap: ()=>Navigator.pop(context),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Center(
+                child: Text("Cancle",style: TextStyle(
+                  color:Color(0xffff0000),fontFamily: 'NunitoSans-Bold',fontSize: 15,
+                ),),
+              ),
             ),
           ),
           title: Center(
@@ -44,29 +45,34 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 style: TextStyle(fontFamily: 'NunitoSans-Bold', color: Colors.black),
               )),
           actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Center(child: Text("Reset All",style: TextStyle( fontSize: 15, color:Color(0xffff0000),fontFamily: 'NunitoSans-Bold',),)),
+            InkWell(
+              onTap: ()=>Navigator.pop(context),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Center(child: Text("Reset All",style: TextStyle( fontSize: 15, color:Color(0xffff0000),fontFamily: 'NunitoSans-Bold',),)),
+              ),
             )
           ],
           elevation: 1,
         ),
-        body: SingleChildScrollView(child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                    itemCount: title.length,
-                    itemBuilder:(context,index){
-                      return FilterCard(title: title[index],list: list[index][title[index]],);
-                    }),
-              )
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                      itemCount: title.length,
+                      itemBuilder:(context,index){
+                        return FilterCard(title: title[index],list: list[index][title[index]],);
+                      }),
+                ),
+              ],
+            ),
           ),
-        )),
+        ),
       ),
     );
   }
@@ -85,54 +91,45 @@ class FilterCard extends StatefulWidget {
 class _FilterCardState extends State<FilterCard> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return Container(
-      width: 400,
-      height: width * widget.list.length  *0.09,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment:MainAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: width * 0.1,bottom: width *0.04,left: 15),
-                child: Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontFamily: "NunitoSans-SemiBold",
-                  ),
+    return Column(
+      children: [
+        SizedBox(height: 20,),
+        Row(
+          mainAxisAlignment:MainAxisAlignment.start,
+          children: [
+            Container(
+              child: Text(
+                widget.title,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: "NunitoSans-SemiBold",
                 ),
               ),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              child: GridView.builder(
-                  itemCount: widget.list.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 1.9,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 2),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: 100,
-                      height: 100,
-                      child: DietaryiteamButton(
-                        text: widget.list[index],
-                        isSelected: (bool value) {
-                          setState(() {
-
-                          });
-                        },),
-                    );
-                  }),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+        Container(
+          child: GridView.builder(
+            shrinkWrap: true,
+              itemCount: widget.list.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.9,
+                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 2),
+              itemBuilder: (context, index) {
+                return Container(
+                  child: DietaryiteamButton(
+                    text: widget.list[index],
+                    isSelected: (bool value) {
+                      setState(() {
+
+                      });
+                    },),
+                );
+              }),
+        ),
+      ],
     );
   }
 }

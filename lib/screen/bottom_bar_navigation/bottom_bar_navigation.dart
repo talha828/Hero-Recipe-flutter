@@ -3,8 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:recipe_hero/screen/browse/browes_screen.dart';
 import 'package:recipe_hero/screen/favorites/favorite_screen.dart';
+import 'package:recipe_hero/screen/favorites/favorites_screen2.dart';
 import 'package:recipe_hero/screen/ingrediants/ingredients.dart';
+import 'package:recipe_hero/screen/setting/setting_screen.dart';
 import 'package:recipe_hero/splash_screen/indicator_screen/indicator_screens.dart';
 
 class BottomBarNavigation extends StatefulWidget {
@@ -17,7 +20,7 @@ class BottomBarNavigation extends StatefulWidget {
 class _BottomBarNavigationState extends State<BottomBarNavigation> {
   int _currentIndex = 0;
   late PageController _pageController;
-  final List<Widget> pages =[Ingredients(),FavoriteScreen(),GetStartScreen(),GetStartScreen()];
+  final List<Widget> pages =[Ingredients(),StartingScreen(),BrowseScreen(),SettingScreen()];
 
   late PersistentTabController _controller;
 

@@ -33,3 +33,18 @@ class AddIngredientList extends ChangeNotifier{
   }
 
 }
+class Sort extends ChangeNotifier{
+  List<String> item = [
+    'Relevance',
+    'Popularity',
+    'Date Added',
+    'Average Review',
+    'Name'
+  ];
+  String dropdownvalue = 'Date Added';
+  sortOrder(String str){
+    dropdownvalue=str;
+    notifyListeners();
+  }
+
+}

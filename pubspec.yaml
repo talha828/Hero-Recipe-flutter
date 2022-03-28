@@ -74,7 +74,9 @@ flutter:
     - family: NunitoSans-Bold
       fonts:
             - asset:  assets/font/NunitoSans-Bold.ttf
-
+    - family: Halant-SemiBold
+      fonts:
+            - asset: assets/font/font_halant/Halant-SemiBold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

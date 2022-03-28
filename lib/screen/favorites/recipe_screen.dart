@@ -163,7 +163,7 @@ List pizza=['In a large bowl, add chicken, chilli sauce, black pepper, soy sauce
                     itemBuilder: (context,index){
                       return Container(
                           height: 200,
-                          child: FavoriteCard(image: "assets/temp-pic/pizza.jpg",title: "Pizza wala",subtitle: "Food Network",));
+                          child: FavoriteCard(image: "assets/temp-pic/pizza.jpg",title: "Pizza wala",subtitle: "Food Network",check: true,));
                     }),),
             ),
           ],),

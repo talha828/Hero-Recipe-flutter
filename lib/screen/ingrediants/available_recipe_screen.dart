@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:recipe_hero/provider_model/provider_model.dart';
 import 'package:recipe_hero/screen/favorites/favorite_card.dart';
 import 'package:recipe_hero/screen/favorites/recipe_screen.dart';
+import 'package:recipe_hero/screen/ingrediants/sort_screen.dart';
 
 import 'filters_screen.dart';
 import 'ingredients.dart';
@@ -16,8 +17,7 @@ class AvailableScreen extends StatefulWidget {
 }
 
 class _AvailableScreenState extends State<AvailableScreen> {
-  String dropdownvalue = 'Sort By Date Added';
-  var items = ['Sort By Date Added', 'Item 2', 'Item 3', 'Item 4', 'Item 5',];
+
   var image =['pizza.jpg',"burger.jpg","korma.jpg","roll.jpg"];
   var title=["Go-Go-Gourmet Pizza	","The IceBurg","Chicken Korma with Spicy Chilli","Takka Roll"];
   @override
@@ -33,7 +33,10 @@ class _AvailableScreenState extends State<AvailableScreen> {
            leading: Icon(Icons.arrow_back_ios,color: Colors.black,),
           actions: [
             InkWell(
-              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>FiltersScreen())),
+              onTap: ()=>showCupertinoModalBottomSheet(
+                context: context,
+                builder: (context) =>FiltersScreen(),
+              ),
               child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   width: 20,
@@ -45,21 +48,14 @@ class _AvailableScreenState extends State<AvailableScreen> {
                   )),
             )
           ],
-          title: Center(
-              child: Text(
-                "Recipes",
-                style: TextStyle(fontFamily: 'NunitoSans-Bold', color: Colors.black),
-              )),
-        ),
+          title: Center(child: Text("Recipes", style: TextStyle(fontFamily: 'NunitoSans-Bold', color: Colors.black),)),),
         body: Consumer<AddIngredientList>(
           builder: (context,addingredients,child){
             return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-
                 child:Column(
               children: [
                 Container(
-
                   child: (addingredients.selectedIngredient.length==0)?Container():Container(
                   height: width * 0.15,
                   child: ListView.builder(
@@ -74,7 +70,7 @@ class _AvailableScreenState extends State<AvailableScreen> {
                       }),
                 ),),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -83,30 +79,24 @@ class _AvailableScreenState extends State<AvailableScreen> {
                         style: TextStyle(
                             color: Colors.grey, fontFamily: "NunitoSans-SemiBold"),
                       ),
-                      DropdownButton(
-                        underline: SizedBox(),
-                        elevation: 0,
-                        value: dropdownvalue,
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.grey,
-                        ),
-                        items: items.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(
-                              items,
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
-                                  fontFamily: "NunitoSans-SemiBold"),
+                      Consumer<Sort>(
+                        builder: (context,sort,child){
+                          return InkWell(
+                            onTap: ()=>showCupertinoModalBottomSheet(
+                              context: context,
+                              builder: (context) =>SortScreen(),
+                            ),
+                            child: Container(
+
+                              child: Row(children: [
+                                Text("Sort By ${sort.dropdownvalue}",style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                    fontFamily: "NunitoSans-SemiBold"),),
+                                Icon(Icons.keyboard_arrow_down_rounded,color: Colors.grey,)
+                              ],)
                             ),
                           );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                          });
                         },
                       ),
                     ],
@@ -129,7 +119,7 @@ class _AvailableScreenState extends State<AvailableScreen> {
                                 builder: (context) => RecipeScreen(),
                               );
                             },
-                            child: FavoriteCard(image:"assets/temp-pic/${image[index]}",title: title[index],subtitle: "Food Network",));
+                            child: FavoriteCard(image:"assets/temp-pic/${image[index]}",title: title[index],subtitle: "Food Network",check: false,));
                       },
                     ),
                   ),
